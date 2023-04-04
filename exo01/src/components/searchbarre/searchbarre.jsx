@@ -4,12 +4,12 @@ const SearchBarre = () => {
 
     // let valeur = "dd"
     
-    const [value, setValue] = useState('');
+    const [name, setName] = useState();
   return (
     <div>
       <label>Votre nom : </label>
-      <input type="text" onChange={(e) => setValue(e.target.value)}/>
-      <Bienvenue name={value} />
+      <input type="text" onChange={(e) => setName(e.target.value)}/>
+      <Bienvenue name={name} />
     </div>
   );
 };

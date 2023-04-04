@@ -6,8 +6,13 @@
 
 .name {
     font-size: xx-large;
+    color: black;
 }
 
 .age {
     color: gray;
+}
+
+.bg {
+    background-color: #f1f1f1;
 }

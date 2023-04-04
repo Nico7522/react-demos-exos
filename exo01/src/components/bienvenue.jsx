@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types'
 import styles from './bienvenue.module.css'
+import clsx from 'clsx'
 import SearchBarre from './searchbarre/searchbarre';
-const Bienvenue = ({age, name}) => {
+const Bienvenue = ({name, age}) => {
    
   return(
     <div>
         {/* <SearchBarre /> */}
     <div className={styles['bienvenue']}>
-      <p className={styles['name']} >Bienvenue {name} sur l'application React !</p>
+      <p className={clsx(styles['name'], styles['bg'])} >Bienvenue {name} sur l'application React !</p>
       <p className={styles['age']}>Vous avez {age} ans</p>
     </div>
     </div>
