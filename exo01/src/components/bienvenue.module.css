@@ -1,0 +1,13 @@
+.bienvenue {
+    border: black 2px solid;
+    padding: 1rem;
+    margin-top: 5px
+}
+
+.name {
+    font-size: xx-large;
+}
+
+.age {
+    color: gray;
+}
