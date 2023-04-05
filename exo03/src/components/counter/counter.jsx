@@ -19,6 +19,7 @@ const Counter = ({val}) => {
             <p>Number is : {count}</p>
             <button onClick={() => increment(val)}>+{val}</button>
             <button onClick={() => decrement(val)}> -{val}</button>
+            <button onClick={() => setCount(1)}> Reset</button>
 
           
         </div>
