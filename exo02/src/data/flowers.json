@@ -1,0 +1,44 @@
+[
+    {
+        "id" : 1,
+        "name" : "Shoe",
+        "price": 49.99,
+        "stock": 28,
+        "isSolded": false
+    },
+    {
+        "id" : 2,
+        "name" : "Pants",
+        "price": 31.49,
+        "stock": 1,
+        "isSolded": false
+    },
+    {
+        "id" : 3,
+        "name" : "Pull",
+        "price": 101.79,
+        "stock": 7,
+        "isSolded": false
+    },
+    {
+        "id" : 4,
+        "name" : "T-shirt",
+        "price": 9.59,
+        "stock": 0,
+        "isSolded": true
+    },
+    {
+        "id" : 5,
+        "name" : "Boots",
+        "price": 152.79,
+        "stock": 0,
+        "isSolded": false
+    },
+    {
+        "id" : 6,
+        "name" : "Caps",
+        "price": 8.77,
+        "stock": 1,
+        "isSolded": true
+    }
+]

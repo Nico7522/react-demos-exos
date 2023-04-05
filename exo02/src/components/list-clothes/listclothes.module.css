@@ -1,0 +1,48 @@
+.div {
+    width: 500px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    border: solid black 3px;
+}
+
+.clothe {
+   background: #cecfc1;
+   border-bottom: 5px solid;
+   width: 500px;
+   
+ display: flex;
+ align-items: center;
+   flex-direction: column;
+}
+
+.name {
+    text-decoration: underline;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.name > .span {
+    text-decoration: none;
+    color: rgb(101, 116, 116);
+}
+
+.items {
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.last {
+    margin-top: 1px;
+    margin-bottom: 5px;
+}
+
+.rouge {
+    color: red;
+}
+
+.vert {
+    color: greenyellow;
+}
