@@ -9,11 +9,17 @@ const CalculForm = () => {
     const [nb2, setNb2] = useState('')
     const [calc, setCalc] = useState('+')
     const [resultat, setResultat] = useState('')
+    const [dark, setDark] = useState(false)
+
     const handleResult = (e) => {
         e.preventDefault();
-        if (isNaN(nb) || isNaN(nb2) || nb === "" || nb2 === "") {
-            let invalidReponse = "Veuillez entrez 2 nombres correctes"
-            return setResultat(invalidReponse)
+        if (nb === "" || nb2 === "") {
+            let error = "Veuillez entrez 2 nombres correctes"
+            return setResultat(error)
+        } 
+        if (nb2 === "0" && calc === "/") {
+            let error = "Division par 0 impossible"
+            return setResultat(error)
         }
         let nbTemp = parseFloat(nb)
         let nbTemp2 = parseFloat(nb2)
@@ -21,43 +27,18 @@ const CalculForm = () => {
         switch (calc) {
             case "+":
                 resultTotal = nbTemp + nbTemp2
-                // if ((nbTemp + nbTemp2).toString().includes('.')) {
-                //     setResultat((nbTemp + nbTemp2).toFixed(2))
-                // } else {
-                //     setResultat(nbTemp + nbTemp2)
-                // }
                 break;
             case "-":
                 resultTotal = nbTemp - nbTemp2
-                // if ((nbTemp - nbTemp2).toString().includes('.')) {
-                //     setResultat((nbTemp - nbTemp2).toFixed(2))
-                // } else {
-                //     setResultat(nbTemp - nbTemp2)
-                // }
                 break;
             case "x":
                 resultTotal = nbTemp * nbTemp2
-                // if ((nbTemp * nbTemp2).toString().includes('.')) {
-                //     setResultat((nbTemp * nbTemp2).toFixed(2))
-                // } else {
-                //     setResultat(nbTemp * nbTemp2)
-                // }
                 break;
             case "/":
                 resultTotal = nbTemp / nbTemp2
-                // if ((nbTemp / nbTemp2).toString().includes('.')) {
-                //     setResultat((nbTemp / nbTemp2).toFixed(2))
-                // } else {
-                //     setResultat(nbTemp / nbTemp2)
-                // }
                 break;
             case "¹":
                 resultTotal = Math.pow(nbTemp, nbTemp2)
-                // if (Math.pow(nbTemp, nbTemp2).toString().includes('.')) {
-                //     setResultat(Math.pow(nbTemp, nbTemp2).toFixed(2))
-                // } else {
-                //     setResultat(Math.pow(nbTemp, nbTemp2))
-                // }
                 break;
             default:
                 setResultat('Erreur')
@@ -71,14 +52,15 @@ const CalculForm = () => {
     }
 
     return (
-        <form className={style['form']} onSubmit={handleResult}>
+        <div >
+        <form className={style['form'] + " " + (dark ? style['dark'] : style['white'])} onSubmit={handleResult}>
             <div >
                 <label htmlFor={id+"nombre"}>Nombre : </label>
-                <input value={nb} onChange={e => setNb(e.target.value)} type="text" id={id+"nombre"} />
+                <input value={nb} onChange={e => isNaN(e.target.value) ? "" : setNb(e.target.value)} type="text" id={id+"nombre"} />
             </div>
             <div>
                 <label htmlFor={id+"nombre2"}>Nombre 2 : </label>
-                <input value={nb2} onChange={e => setNb2(e.target.value)}  type="text" id={id+"nombre2"} />
+                <input value={nb2} onChange={e => isNaN(e.target.value) ? "" : setNb2(e.target.value)}  type="text" id={id+"nombre2"} />
             </div>
             <div>
                 <select value={calc} onChange={e => setCalc(e.target.value)}  id={id+"calc"}>
@@ -90,12 +72,20 @@ const CalculForm = () => {
                 </select>
                 <div className={style['result']}>
                     <label htmlFor={id+"reponse"}>Résultat : </label>
-                    <input value={isNaN(resultat) ? " " : resultat} onChange={e => setResultat(e.target.value)}  type="text" htmlFor={id+"reponse"} readOnly />
-                    <span style={{"color" : "red"}}>{isNaN(resultat) ? (resultat) : "" }</span>
+                    <input value={isNaN(resultat) ? " " : resultat} onChange={e => setResultat((e.target.value))}  type="text" htmlFor={id+"reponse"} readOnly />
+                    <span style={{"color" : "red"}}>{isNaN(resultat) ? resultat : "" }</span>
                 </div>
             </div>
             <button type="submit">Calculer</button>
+
         </form>
+        
+        <label className={style['switch']}>
+        <input type="checkbox" value={dark} onChange={e => setDark(e.target.checked)} className={style['chk']} />
+        <span className={style['slider']}></span>
+        {console.log(dark)}
+      </label>
+      </div>
     )
 }
 

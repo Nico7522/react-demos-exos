@@ -1,3 +1,4 @@
+import Counter from '../containers/counter/counter'
 import './App.css'
 import FruitList from './components/fruit-list/fruit-list'
 import Multi3 from './components/multi-3/multi-3'
@@ -25,6 +26,9 @@ function App() {
 
       <h2>Demo 05 - les formulaires</h2>
       <TemperatureConvertForm />
+
+      <h2>Demo 06 - la communication</h2>
+      <Counter />
     </div>
   )
 }
