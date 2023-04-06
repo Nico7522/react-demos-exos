@@ -1,0 +1,17 @@
+.main {
+    width: 400px;
+    margin: 150px auto;
+    border: solid black 2px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    margin: 2px;
+}
+
+.para {
+    font-size: 2rem;
+}

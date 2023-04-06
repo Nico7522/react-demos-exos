@@ -1,6 +1,7 @@
 
 import './App.css'
 import Counter from './components/counter/counter'
+import Modal from './components/test-modal/modal'
 
 function App() {
   const value = 2
@@ -8,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <Counter val={value} />
+      <Modal />
     </div>
   )
 }

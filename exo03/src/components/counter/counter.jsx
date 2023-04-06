@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import style from './counter.module.css'
 const Counter = ({val}) => {
     const [count, setCount] = useState(1)
    
@@ -15,11 +15,11 @@ const Counter = ({val}) => {
 
 
     return (
-        <div>
-            <p>Number is : {count}</p>
-            <button onClick={() => increment(val)}>+{val}</button>
-            <button onClick={() => decrement(val)}> -{val}</button>
-            <button onClick={() => setCount(1)}> Reset</button>
+        <div className={style['main']}>
+            <p className={style['para']}>Number is : {count}</p>
+            <button className={style['button'] + ' ' + "btn btn-success"} onClick={() => increment(val)}>+{val}</button>
+            <button className={style['button'] + ' ' + "btn btn-danger"} onClick={() => decrement(val)}> -{val}</button>
+            <button className={style['button'] + ' ' + "btn btn-secondary"} onClick={() => setCount(1)}> Reset</button>
 
           
         </div>

@@ -19,7 +19,6 @@ const PeopleTableRow = ({ firstname, lastname, birthdate }) => (
 );
 
 const PeopleTable = ({ people }) => {
-  console.log(people);
   return (
     <>
       <h3>Table de personne</h3>

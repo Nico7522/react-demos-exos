@@ -1,0 +1,19 @@
+.form {
+    width: 500px;
+    margin: auto;
+    border: solid black 2px;
+    border-radius: 25px;
+    background-color: grey;
+    padding: 3px;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+}
+
+.result > input {
+    width: 50px;
+    margin: auto;
+    text-align: center;
+}
