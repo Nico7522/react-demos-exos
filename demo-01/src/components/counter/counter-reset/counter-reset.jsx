@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const CounterReset = ({text, onReset, visible}) => {
     return (
         <>
-        {visible &&(
+        { visible &&(
         <button onClick={() => onReset()}>{text}</button>
         )}       
         </>

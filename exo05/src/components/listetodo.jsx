@@ -1,0 +1,29 @@
+import { useId, useState } from "react"
+import style from './listtodo.module.css'
+
+const ListeTodo = ({listTache, onDelete, onChange}) => {
+    const id = useId();   
+    const handleDelete = (t) => {
+        onDelete(t)
+    }
+    const handleDone = (t) => {
+        onChange(t)
+    }
+   
+    return (
+        <>
+        {listTache.map( t => (
+             <div key={t.id} className={t.isDone ? style['done'] : style['undone']} >
+                <h3 >{t.nom}</h3>
+                <p>{t.description}</p>
+                <button value={t.isDone} onClick={() => handleDelete(t.id)}>Supprimer ?</button>
+                <button disabled={t.isDone} value={t.isDone} onClick={() => handleDone(t.id)}>Terminé ?</button>
+                <span className={t.prio === 'urgent' ? style['urgent'] : ""}>{t.prio === 'urgent' ? "URGENT" : t.prio === 'normal' ? 'NORMAL' : t.prio === 'tranquille' ? 'J\'ai le temps' : ''}</span>
+            </div> 
+))}
+
+        </>
+    )
+}
+
+export default ListeTodo
