@@ -1,0 +1,13 @@
+.form-control {
+  width: 300px !important;
+}
+
+.main {
+
+  margin: auto;
+}
+
+.label {
+    font-size: small;
+    margin-top: -10px;
+}

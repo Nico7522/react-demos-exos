@@ -43,8 +43,8 @@ const TodoAff = () => {
       if (tache.id === id) {
         return (tache.isDone = !tache.isDone);
       }
-      setOriginalTab(tabTemp);
     });
+    setOriginalTab(tabTemp);
   };
 
   tabFiltered = originalTab.filter((t) => {
@@ -63,7 +63,7 @@ const TodoAff = () => {
   });
 
   return (
-    <div>
+    <div className={style['total']}>
       <div className={style["modal"] + " " + (modal && style["show"])}>
         Are you sure ?
         <div className={style['button']}>
@@ -72,13 +72,17 @@ const TodoAff = () => {
         </div>
       </div>
       <h2>Todo List</h2>
+      <div className={style['filter']}>
       {showPriority.map((p) => {
         return (
-          <button key={p} value={p} onClick={() => setFilter(p)}>
+          <button className="btn btn-primary btn-sm" key={p} value={p} onClick={() => setFilter(p)}>
             {p}
           </button>
         );
       })}
+
+
+      </div>
       <FormList onValidation={newTache} />
       <ListeTodo
         onDelete={onDelete}
