@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormList from "../../components/form-list";
 import ListeTodo from "../../components/listetodo";
 import style from "./todoaff.module.css";
@@ -10,6 +10,7 @@ const TodoAff = () => {
   let tabFiltered = [];
   const [modal, setModal] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [id, setId] = useState();
 
   const newTache = ({ nom, description, prio }) => {
     setOriginalTab([
@@ -24,15 +25,16 @@ const TodoAff = () => {
     ]);
   };
 
-  const onDelete = (id) => {
+  const catchId = (id) => {
     setModal(true);
-    if (confirmDelete) {
-      let tabTemp = originalTab.filter((t) => {
-        return t.id !== id;
-      });
-
-      setOriginalTab(tabTemp);
-    }
+    return setId(id);
+  };
+  const onDelete = () => {
+    let tabTemp = originalTab.filter((t) => {
+      return t.id !== id;
+    });
+    setModal(false);
+    setOriginalTab(tabTemp);
   };
 
   const onChange = (id) => {
@@ -58,23 +60,16 @@ const TodoAff = () => {
       default:
         return true;
     }
-    // if (filter === "Urgent") {
-    //   return t.prio === "urgent";
-    // } else if (filter === "Normal") {
-    //   return t.prio === "normal";
-    // } else if (filter === "Tranquille") {
-    //   return t.prio === "tranquille"
-    // } else {
-    //   return true;
-    // }
   });
 
   return (
     <div>
       <div className={style["modal"] + " " + (modal && style["show"])}>
         Are you sure ?
-        <button onClick={() => setConfirmDelete(true)}>Yes</button>
-        <button>No</button>
+        <div className={style['button']}>
+          <button className="btn btn-outline-danger" onClick={() => onDelete()}>Yes</button>
+          <button className="btn btn-outline-success" onClick={() => setModal(false)}>No</button>
+        </div>
       </div>
       <h2>Todo List</h2>
       {showPriority.map((p) => {
@@ -89,6 +84,7 @@ const TodoAff = () => {
         onDelete={onDelete}
         onChange={onChange}
         listTache={tabFiltered}
+        onCatch={catchId}
       />
     </div>
   );

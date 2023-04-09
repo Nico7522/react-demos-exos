@@ -4,13 +4,27 @@
     height: 200px;
     margin: 100px 470px;
     border: solid black 2px;
+    border-radius: 25px;
+    padding-top: 20px;
+    font-size: 20px;
     background-color: black;
     color: aliceblue;
     transition: margin-top 1s ;
     visibility: hidden;
+    z-index: 10;
+
+
 }
 
 .show {
     margin-top: 250px;
     visibility: visible;
+}
+
+.button {
+    width: 110px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
