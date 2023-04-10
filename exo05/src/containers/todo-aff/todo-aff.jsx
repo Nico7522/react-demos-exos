@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import FormList from "../../components/form-list";
 import ListeTodo from "../../components/listetodo";
 import style from "./todoaff.module.css";
+import ModalConfirm from "./modal-confirm";
 
 const showPriority = ["All", "Urgent", "Normal", "Tranquille"];
 const TodoAff = () => {
@@ -25,6 +26,10 @@ const TodoAff = () => {
     ]);
   };
 
+  const unshowModal =  () => {
+    setModal(false)
+  }
+
   const catchId = (id) => {
     setModal(true);
     return setId(id);
@@ -33,7 +38,7 @@ const TodoAff = () => {
     let tabTemp = originalTab.filter((t) => {
       return t.id !== id;
     });
-    setModal(false);
+    setModal(m => !m);
     setOriginalTab(tabTemp);
   };
 
@@ -64,13 +69,7 @@ const TodoAff = () => {
 
   return (
     <div className={style['total']}>
-      <div className={style["modal"] + " " + (modal && style["show"])}>
-        Are you sure ?
-        <div className={style['button']}>
-          <button className="btn btn-outline-danger" onClick={() => onDelete()}>Yes</button>
-          <button className="btn btn-outline-success" onClick={() => setModal(false)}>No</button>
-        </div>
-      </div>
+       <ModalConfirm sendDelete={onDelete} sendNoDelete={unshowModal} modalOn={modal}/>
       <h2>Todo List</h2>
       <div className={style['filter']}>
       {showPriority.map((p) => {
