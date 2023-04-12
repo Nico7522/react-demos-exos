@@ -1,20 +1,65 @@
-import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect, useState } from "react";
+import ShowInfos from "../show-infos/show-infos";
+import { fetchApiWeather, fetchApiWeatherForecast } from "../../../api/api";
+import ShowInfoForecast from "../show-infos/show-infos-forecast";
 
-const API_KEY = 'b4aa40379346ecf2bb8db2359d18a890'
+export default function WeatherLiveBoard({ city, lang }) {
+  const [dataCity, setDataCity] = useState(null);
+  const [dataCityForecast, setDataCityForecast] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [archive, setArchive] = useState([]);
 
-const WEATHER_URL = `http://api.openweathermap.org/geo/1.0/direct?q=La-Louviere&limit=1&appid=${API_KEY}`
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
+    setDataCity(null);
+    fetchApiWeather(city, lang)
+      .then((data) => {
+        setDataCity(data);
+        setArchive([...archive, data]);
+        console.log(archive);
+      })
+      .catch((error) => {
+        setError("Error");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [city, lang]);
 
-export default function WeatherLiveBoard ({cityName}) {
+  useEffect(() => {
+    fetchApiWeatherForecast(city).then((data) => {
+        setDataCityForecast(data);
+        console.log('datacity', dataCityForecast);
 
-    useEffect(() => {
-        console.log(WEATHER_URL);
+    });
+  }, [city]);
 
-        axios.get(WEATHER_URL)
-            .then(({data}) => {
-                console.log(data);
-            })
-
-    })
-
+  return (
+    <>
+      {loading
+        ? "Loading..."
+        : error !== null
+        ? error
+        : dataCity && <ShowInfos data={dataCity} />}
+      {dataCity && <ShowInfoForecast data={dataCityForecast} />}
+    </>
+  );
 }
+
+// const url = WEATHER_URL.replace('__city__', city)
+// setLoading(true)
+// setError(null)
+// setDataCity(null)
+// axios.get(url)
+//     .then(({data}) => {
+//         // console.log(data);
+//         setDataCity({
+//             id: data.id,
+//             cityName: data.name,
+//             temp: data.main.temp,
+//             feeling: data.main.feels_like,
+//             weather: data.weather
+//         })
+//     })
