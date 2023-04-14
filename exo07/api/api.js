@@ -33,9 +33,6 @@ export function fetchApiWeatherForecast(city) {
       },
     })
     .then(({ data }) => {
-      console.log(data);
-      const time = new Date(data.list[0].dt_txt).toLocaleTimeString();
-      const hours = `${time[0] + time[1]}H`;
       return {
         city: data.city.name,
         forecast: data.list.map((t) => ({
@@ -45,5 +42,7 @@ export function fetchApiWeatherForecast(city) {
           img: t.weather[0].icon,
         })),
       };
-    }).then(r => {return r})
+    }).then(r => {
+      return r
+    })
 }

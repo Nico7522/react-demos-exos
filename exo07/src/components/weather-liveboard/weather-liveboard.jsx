@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import ShowInfos from "../show-infos/show-infos";
 import { fetchApiWeather, fetchApiWeatherForecast } from "../../../api/api";
 import ShowInfoForecast from "../show-infos/show-infos-forecast";
+import { useFetchWeather } from "../../../hooks/weather.hook";
 
 export default function WeatherLiveBoard({ city, lang }) {
+  // const [data1, data2] = useFetchWeather(city, lang)
   const [dataCity, setDataCity] = useState(null);
   const [dataCityForecast, setDataCityForecast] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,8 +35,12 @@ export default function WeatherLiveBoard({ city, lang }) {
         setDataCityForecast(data);
         console.log('datacity', dataCityForecast);
 
-    });
+    })
+    .catch((error) => {
+      console.log('error =>' ,error);
+    })
   }, [city]);
+
 
   return (
     <>
@@ -43,7 +49,7 @@ export default function WeatherLiveBoard({ city, lang }) {
         : error !== null
         ? error
         : dataCity && <ShowInfos data={dataCity} />}
-      {dataCity && <ShowInfoForecast data={dataCityForecast} />}
+        { dataCityForecast && <ShowInfoForecast data={dataCityForecast} />}
     </>
   );
 }
